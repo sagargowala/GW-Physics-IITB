@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Gravitational Wave Physics Group – IIT Bombay</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+
+    <div class="logo">GW Physics · IIT Bombay</div>
+
+    <div class="nav-right">
+      <div class="nav-links">
+        <button class="active" onclick="showPage('home',this)">Home</button>
+        <button onclick="showPage('prof',this)">Profile</button>
+        <button onclick="showPage('group',this)">Group</button>
+        <button onclick="showPage('research',this)">Research</button>
+        <button onclick="showPage('gw',this)">Resources</button>
+      </div>
+
+      <button class="theme-btn" id="themeToggle" title="Toggle theme">
+        <span class="theme-icon" id="themeIcon">🌙</span>
+        <span class="theme-label" id="themeLabel">Dark</span>
+      </button>
+
+      <div class="hamburger" onclick="toggleMob()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div class="mob-menu" id="mobMenu">
+    <button class="active" onclick="showPage('home',this,true)">Home</button>
+    <button onclick="showPage('prof',this,true)">Profile</button>
+    <button onclick="showPage('group',this,true)">Group</button>
+    <button onclick="showPage('research',this,true)">Research</button>
+    <button onclick="showPage('gw',this,true)">Resources</button>
+  </div>
+</nav>
+
+
+
+<!-- ==================== HOME ==================== -->
+
+
+<div class="page active" id="page-home">
+  <!-- HERO: Black Hole Merger Canvas -->
+  <div class="hero">
+    <canvas id="bhCanvas"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">IIT Bombay · ACG Group </div>
+      <h1>Gravitational Wave<br/><em>Physics Group</em></h1>
+      <p>Listening to the universe through ripples in spacetime — from binary black hole mergers to neutron star collisions.</p>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="showPage('research',document.querySelectorAll('.nav-links button')[3])">Our Research</button>
+        <button class="btn-ghost" onclick="showPage('group',document.querySelectorAll('.nav-links button')[2])">Meet the Group</button>
+      </div>
+    </div>
+  </div>
+
+
+<!-- PROF HIGHLIGHT -->
+<div class="prof-strip" style=" display:flex; align-items:center;   /* FIXED alignment */gap:40px; flex-wrap:wrap;">
+  <!-- IMAGE -->
+  <div class="prof-img-wrap" style=" flex:0 0 260px; max-width:260px; margin-left:24px;">
+    <div style=" width:100%; aspect-ratio:1 / 1; background:linear-gradient(160deg,#0c1828,#060c18);
+      overflow:hidden; border-radius:12px; display:flex; align-items:center; justify-content:center; ">
+      <img src="images/archana.jpg" alt="Prof. Archana Pai"
+        style=" width:100%; height:100%; object-fit:cover; display:block;"
+        onerror="this.style.display='none';this.parentNode.innerHTML='<span style=font-size:5rem>👩‍🔬</span>'"
+      />
+    </div>
+  </div>
+
+  <!-- TEXT -->
+  <div class="prof-info" style=" flex:1; min-width:280px; ">
+
+    <div style="font-size:0.85rem; letter-spacing:1px; color:#7aa2ff; margin-bottom:6px; text-transform:uppercase;">
+    Principal Investigator </div>
+
+    <h2 style=" margin:0 0 8px 0; line-height:1.2;"> Prof. Archana Pai </h2>
+
+    <div style="font-size:0.95rem;opacity:0.8;margin-bottom:14px; ">
+    Professor · ACG Group · Department of Physics · IIT Bombay </div>
+
+    <p style=" line-height:1.6; margin-bottom:18px;">
+    I work on Gravitational Wave physics. The research interests are probing astrophysical properties of compact binary black
+    holes and testing Einstein's general theory of relativity, development of specialized transient search techniques for 
+    interferometric gravitational wave detectors and multi-messenger astronomy.
+    </p>
+
+    <div style=" display:flex; flex-wrap:wrap; gap:12px;margin-bottom:18px;">
+      <a href="https://inspirehep.net/authors/994508" target="_blank" style="text-decoration:none;">INSPIRE</a>
+      <a href="https://scholar.google.com/citations?hl=en&user=2Dw4Y9AAAAAJ" target="_blank" style="text-decoration:none;">Google Scholar</a>
+      <a href="#" onclick="copyEmail(event)" style="text-decoration:none; cursor:pointer;"> Email </a>
+    </div>
+    <span style="cursor:pointer;font-weight:500;"
+    onclick="showPage('prof',document.querySelectorAll('.nav-links button')[1])"> Full Profile → </span>
+
+  </div>
+</div>
+
+
+
+<!-- BOXES -->
+<div class="four-boxes">
+  <div class="fbox" onclick="showPage('group',document.querySelectorAll('.nav-links button')[2])">
+    <div class="fbox-num">01</div>
+    <h3>Research Group</h3>
+    <p>Meet our PhD students, postdocs, and alumni contributing to GW science.</p>
+    <span class="arr">→</span>
+  </div>
+  <div class="fbox" onclick="showPage('research',document.querySelectorAll('.nav-links button')[3])">
+    <div class="fbox-num">02</div>
+    <h3>Research & Publications</h3>
+    <p>Explore our research areas, recent papers, and contributions to the LSC.</p>
+    <span class="arr">→</span>
+  </div>
+  <div class="fbox" onclick="document.getElementById('gw-info').scrollIntoView({behavior:'smooth'})">
+    <div class="fbox-num">03</div>
+    <h3>Gravitational Wave Science</h3>
+    <p>What are gravitational waves? How are they generated, detected & analysed?</p>
+    <span class="arr">↓</span>
+  </div>
+</div>
+
+
+<!-- GW INFO SECTIONS -->
+<div id="gw-info">
+
+  <!-- 1. What are GWs -->
+  <div class="home-section">
+    
+    <div class="hs-label">Fundamentals</div>
+    
+    <div class="hs-title">
+      What are <em>Gravitational Waves?</em>
+    </div>
+    
+    <div class="hs-rule"></div>
+
+    <div class="two-col">
+
+      <!-- TEXT -->
+      <div class="hs-body">
+
+        <p>
+        Gravitational waves are propagating perturbations of spacetime curvature — solutions of Einstein’s field equations in the weak-field, radiative regime. They travel at the speed of light and encode dynamical information about their sources.
+        </p>
+
+        <p>
+        In contrast to electromagnetic radiation, gravitational waves couple extremely weakly to matter. This weak coupling makes their detection experimentally challenging, but ensures that the signals arrive virtually unattenuated, preserving pristine information about highly energetic and otherwise obscured astrophysical processes.
+        </p>
+
+        <p>
+        The dominant sources are compact binaries — systems of black holes or neutron stars — whose inspiral and merger emit gravitational radiation through a time-varying mass quadrupole moment. The final coalescence releases enormous energy in gravitational waves, briefly outshining the entire electromagnetic luminosity of the observable universe.
+        </p>
+
+        <!-- CTA -->
+        <div style="margin-top:22px;">
+          <span 
+            style="cursor:pointer;color:var(--accent);font-weight:600;"
+            onclick="showPage('gw',document.querySelectorAll('.nav-links button')[4])"
+          >
+            Read more about GW Physics →
+          </span>
+        </div>
+
+      </div>
+
+      <!-- IMAGE -->
+      <div>
+        <div class="vis-box">
+          <img src="images/gw-merger.png" 
+               alt="Binary black hole merger producing gravitational waves" 
+               class="vis-img">
+          <div class="vis-caption">
+            GW from a binary black hole merger and detection using Michaelson interferometer
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 5. Our Group's Focus -->
+<div class="home-section" style="background:var(--bg2);">
+  <div class="hs-label">Our Focus</div>
+  <div class="hs-title">What Our Group <em>Investigates</em></div>
+  <div class="hs-rule"></div>
+  <div class="hs-body" style="max-width:900px;">
+    <p>Our group at IIT Bombay is an active member of the LIGO Scientific Collaboration (LSC), contributing to both detection and interpretation of gravitational wave events. We focus on exotic binary systems that push the boundaries of what we know about stellar evolution and gravity itself.</p>
+  </div>
+  <div class="tg" style="margin-top:28px;">
+    <div class="tc"><h3>🔍 Intermediate Mass Black Holes</h3><p>Searching for IMBH binaries (100–10,000 M☉) — the missing link between stellar and supermassive black holes. Our group is an active member of the IMBH subgroup in LSC.</p></div>
+    <div class="tc"><h3>🌀 Eccentric Binary Searches</h3><p>Developing pipelines for binaries with significant orbital eccentricity — formed dynamically in dense stellar environments like globular clusters and galactic nuclei.</p></div>
+    <div class="tc"><h3>🤖 Machine Learning Transient Search</h3><p>Applying deep learning to detect and classify GW transients, reduce noise artefacts (glitches), and push detection sensitivity beyond classical methods.</p></div>
+    <div class="tc"><h3>⚖️ Tests of General Relativity</h3><p>Using detected GW events to perform precision tests of GR in the strong-field dynamical regime, accessible only through compact binary observations.</p></div>
+  </div>
+  <div style="margin-top:20px;">
+    <button class="btn-gold" onclick="showPage('research',document.querySelectorAll('.nav-links button')[3])">View All Research →</button>
+  </div>
+</div>
+
+<!-- 6. News Updates -->
+<div class="home-section">
+  <div class="hs-label">Notifications</div>
+  <div class="hs-title">News  <em> Updates</em></div>
+  <div class="hs-rule"></div>
+  <div class="steps">
+
+    <div class="step"><div class="step-num" style="width:96px;border-radius:8px;font-size:.75rem;">03-04-2026</div>
+    <div class="step-text"><h4>Project Position Available</h4>
+    <p>We are seeking motivated graduate students and postdoctoral researchers to join our group.</p>
+    <a href="https://scholar.google.com/citations?hl=en&user=2Dw4Y9AAAAAJ" target="_blank" style="text-decoration:none;">Read More</a>
+    </div></div>
+    
+  
+  </div>
+</div>
+
+<footer>
+  <p>
+    Gravitational Wave Physics Group · Department of Physics · IIT Bombay · Powai, Mumbai 400076<br/>
+    <a href="#" onclick="copyEmail(event)"> archanap@iitb.ac.in </a> ·
+    <a href="https://inspirehep.net/authors/994508">INSPIRE</a> ·
+    <a href="https://scholar.google.com/...">Google Scholar</a>
+  </p>
+</footer>
+
+</div>
+
+
+
+
+<!-- ==================== PROF PAGE ==================== -->
+
+
+
+
+
+<div class="page" id="page-prof">
+  <div class="profile-hero">
+    <div class="profile-flex">
+      <div class="prof-avatar">
+        <img src="images/archana.jpg"
+             alt="Prof. Archana Pai"
+             onerror="this.style.display='none';this.parentNode.innerHTML='👩‍🔬'"/>
+      </div>
+      <div class="pi">
+        <h1>Prof. Archana Pai</h1>
+        <div class="role">Professor · Gravitational Wave Physics</div>
+        <div class="inst">Department of Physics, IIT Bombay, Mumbai – 400076</div>
+        <div class="prof-links">
+          <a class="plink" href="https://inspirehep.net/authors/994508" target="_blank">INSPIRE</a>
+          <a class="plink" href="https://scholar.google.com/citations?hl=en&user=2Dw4Y9AAAAAJ" target="_blank">Google Scholar</a>
+          <a class="plink" href="#" onclick="copyEmail(event)" style="text-decoration:none; cursor:pointer;"> archanap@iitb.ac.in </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="profile-body">
+  <!-- ABOUT -->
+  <p style="color:#9aafc7;font-size:.9rem;line-height:1.8;margin-bottom:16px;">
+    I work on Gravitational Wave physics. The research interests are probing astrophysical properties of 
+    compact binary black holes and testing Einstein's general theory of relativity, development of specialized 
+    transient search techniques for interferometric gravitational wave detectors and multi-messenger astronomy.
+  </p>
+
+  <!-- RESEARCH -->
+  <div class="psec">
+    <h2>Research Interests</h2>
+    <div class="itags">
+      <span class="itag">Gravitational Wave Astronomy</span>
+      <span class="itag">Compact Binary Black Holes</span>
+      <span class="itag">Signal Detection Algorithms</span>
+      <span class="itag">Transient Searches</span>
+      <span class="itag">Tests of General Relativity</span>
+      <span class="itag">Multi-messenger Astronomy</span>
+    </div>
+  </div>
+
+  <!-- POSITIONS -->
+  <div class="psec">
+    <h2>Academic Positions</h2>
+      <div class="cv-row">
+      <div class="cv-yr">2022–Present
+      </div>
+      <div class="cv-d">
+        <h4>Professor</h4>
+        <p>Department of Physics, IIT Bombay</p>
+      </div>
+    </div>
+
+    <div class="cv-row">
+      <div class="cv-yr">2017–2022</div>
+      <div class="cv-d">
+        <h4>Associate Professor</h4>
+        <p>Department of Physics, IIT Bombay</p>
+      </div>
+    </div>
+
+    <div class="cv-row">
+      <div class="cv-yr">2021–Present</div>
+      <div class="cv-d">
+        <h4>SERB Power Fellow</h4>
+        <p>Department of Science and Technology, India</p>
+      </div>
+    </div>
+
+    <div class="cv-row">
+      <div class="cv-yr">2009–2017</div>
+      <div class="cv-d">
+        <h4>Assistant Professor</h4>
+        <p>IISER Thiruvananthapuram</p>
+      </div>
+    </div>
+
+    <div class="cv-row">
+      <div class="cv-yr">2005–2009</div>
+      <div class="cv-d">
+        <h4>Postdoctoral Researcher</h4>
+        <p>Albert Einstein Institute, Germany</p>
+      </div>
+    </div>
+
+    <div class="cv-row">
+      <div class="cv-yr">2003–2005</div>
+      <div class="cv-d">
+        <h4>INFN Postdoctoral Fellow</h4>
+        <p>Università di Roma “La Sapienza”, Italy</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="psec">
+    <h2>Education</h2>
+
+    <div class="cv-row">
+      <div class="cv-yr">1996–2001</div>
+      <div class="cv-d">
+        <h4>Ph.D. in Physics</h4>
+        <p>IUCAA (University of Pune)</p>
+      </div>
+    </div>
+
+    <div class="cv-row">
+      <div class="cv-yr">1994–1996</div>
+      <div class="cv-d">
+        <h4>M.Sc. Physics</h4>
+        <p>IIT Bombay</p>
+      </div>
+    </div>
+
+    <div class="cv-row">
+      <div class="cv-yr">1991–1994</div>
+      <div class="cv-d">
+        <h4>B.Sc. Physics</h4>
+        <p>University of Mumbai</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESEARCH HIGHLIGHTS -->
+  <div class="psec">
+    <h2>Research Highlights</h2>
+    <ul style="color:#9aafc7;font-size:.9rem;line-height:1.8;">
+      <li>Author of the gravitational wave discovery paper (LIGO Scientific Collaboration)</li>
+      <li>59+ peer-reviewed publications with direct contributions</li>
+      <li>Key contributions to intermediate-mass black hole searches in LIGO-Virgo data</li>
+      <li>Supervised PhD students and postdoctoral researchers</li>
+      <li>36+ invited talks at international conferences</li>
+    </ul>
+  </div>
+
+  <!-- AWARDS -->
+  <div class="psec">
+    <h2>Awards & Recognition</h2>
+    <ul style="color:#9aafc7;font-size:.9rem;line-height:1.8;">
+      <li>SERB Power Fellowship (2021–)</li>
+      <li>Breakthrough Prize in Fundamental Physics (2016, LIGO Collaboration)</li>
+      <li>Gruber Prize in Cosmology (2016)</li>
+      <li>Royal Astronomical Society Group Achievement Award (2017)</li>
+      <li>N. R. Sen Young Scientist Award (2015)</li>
+      <li>Member, International Astronomical Union</li>
+    </ul>
+  </div>
+
+  <!-- TEACHING -->
+  <div class="psec">
+    <h2>Teaching</h2>
+    <div class="cg">
+      <div class="cc"><h4>Classical Mechanics</h4></div>
+      <div class="cc"><h4>Electrodynamics</h4></div>
+      <div class="cc"><h4>General Relativity</h4></div>
+      <div class="cc"><h4>Gravitational Wave Astronomy</h4></div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="psec">
+    <h2>Contact</h2>
+    <p style="color:#9aafc7;font-size:.88rem;">
+      📧 <a href="mailto:archana@phy.iitb.ac.in">archana@phy.iitb.ac.in</a> | <a href="mailto:archanap@iitb.ac.in">archanap@iitb.ac.in</a><br/>
+      ☎️ +91-22-2576-9380<br/>
+      🏛️ Office: 114, First Floor, Department of Physics, IIT Bombay, Powai, Mumbai – 400076<br/> </p>
+  </div>
+  </div>
+
+<footer>
+  <p>GW Physics Group · IIT Bombay · <a href="#" onclick="copyEmail(event)" style="text-decoration:none; cursor:pointer;"> archanap@iitb.ac.in  </a> </p>
+</footer>
+
+</div>
+
+
+
+
+<!-- ==================== GROUP PAGE ==================== -->
+
+
+
+
+<div class="page" id="page-group">
+  <div style="padding-top:20px;"></div>
+  <div class="grp-sec" style="padding-top:40px;">
+    <div class="hs-label">People</div>
+    <div class="hs-title" style="font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:6px;">Our <em style="font-style:normal;background:var(--gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Research Group</em></div>
+    <div class="hs-rule"></div>
+    <p style="max-width:1300px;color:var(--muted); font-size:.9rem; line-height:1.6; margin-top:14px;">
+    Current focus of the group is intermediate mass binary searches as well as eccentric black hole binary searches ranging from matched filter based searches, wavelet based searches to machine learning based transient searches. The group is an active member of the IMBH/eBBH subgroup in the LIGO Scientific Collaboration.
+    </p>
+
+  <!-- CURRENT PHD STUDENTS -->
+  <div class="grp-sec" style="padding: top 15px;;">
+    <h2>Current PhD Students</h2>
+    <div class="grp-grid">
+      <div class="mc">
+          <div class="mc-photo"> <img src="images/sayantan.jpg" > </div>
+          <div class="mbadge phd">2021-Present</div>
+          <h4>Sayantan Ghosh</h4>
+          <a href="https://scholar.google.com/citations?user=XXXX" target="_blank"> GoogleScholar</a> |
+          <a href="https://inspirehep.net/authors/2897706">INSPIRE</a>
+          </p><a href="https://inspirehep.net/literature?sort=mostrecent&size=25&page=1&q=a%20Pai%2C%20a%20and%20a%20Chandra%2C%20K" target="_blank">Personal Webpage →</a></div>
+      
+
+      <div class="mc">
+          <div class="mc-photo">  <span class="emoji">🧑‍🎓</span> </div>
+          <div class="mbadge phd">2023-Present</div>
+          <h4>Johann Milton Fernandes</h4>
+          <a href="#" target="_blank"> GoogleScholar</a> |
+          <a href="#" target="_blank">INSPIRE</a>
+          </p><a href="#" target="_blank">Personal Webpage →</a></div>
+
+      <div class="mc">
+          <div class="mc-photo"> <img src="images/sagar.jpg" alt="">  </div>
+          <div class="mbadge phd">2026-Present</div>
+          <h4>Sagar Gowala</h4>
+          <a href="#" target="_blank"> GoogleScholar</a> |
+          <a href="#" target="_blank">INSPIRE</a>
+          </p><a href="#" target="_blank">Personal Webpage →</a></div>
+      
+    </div>
+  </div>
+
+
+  <!-- CURRENT POSTDOCTORAL RESEARCHERS -->
+  <div class="grp-sec">
+    <h2>Postdoctoral Researchers</h2>
+    <div class="grp-grid">
+      <div class="mc">
+          <div class="mc-photo"> <img src="images/Shubhagata.jpg" alt="">  </div>
+          <div class="mbadge phd">2026-Present</div>
+          <h4>Shubhagata Bhaumik</h4>
+          <a href="#" target="_blank"> GoogleScholar</a> |
+          <a href="https://inspirehep.net/authors/1874458" target="_blank">INSPIRE</a>
+          </p><a href="https://shubhagatab.github.io/" target="_blank">Personal Webpage →</a></div>
+    </div>
+  </div>
+
+
+  <!-- UNDERGRADUATE STUDENTS -->
+  <div class="grp-sec"><h2>Undergraduate Students</h2>
+    <div class="grp-grid">
+      <div class="mc"><div class="mc-photo">👩‍🎓</div><div class="mbadge btech">B.Tech</div><h4>Khushi</h4><p>Project Student</p></div>
+    </div>
+  </div>
+
+  
+  <!-- ALUMNI -->
+  <div class="grp-sec">
+    <h2>Alumni</h2>
+    <div class="grp-grid">
+        <div class="mc">
+        <div class="mc-photo"> <img src="images/Koustav2.jpg" alt="">  </div>
+        <div class="mbadge phd">PhD Graduate</div>
+        <h4>Koustav Chandra</h4>
+        <p>Current Position: Postdoc, Max Planck Institute for Gravitational Physics</p>
+        </p><a href="https://www.aei.mpg.de/person/149857" target="_blank">Personal Webpage →</a></div>
+    </div>
+    <p style="margin-top:18px;color:var(--muted);font-size:.83rem;">📌 Information last updated on April 1, 2026.</p>
+  </div>
+
+
+<footer><p>GW Physics Group · IIT Bombay · <a href="#" onclick="copyEmail(event)" style="text-decoration:none; cursor:pointer;"> archanap@iitb.ac.in  </a></p></footer> </div>
+
+</div>
+
+
+
+<!-- ==================== RESEARCH PAGE ==================== -->
+
+
+<div class="page" id="page-research">
+<div style="padding-top:20px;"></div>
+<div class="res-body" style="padding-top:40px;">
+<div class="hs-label">Research</div>
+<div class="hs-title" style="font-size:clamp(1.4rem,3vw,2rem);font-weight:800;margin-bottom:6px;">Research <em style="font-style:normal;background:var(--gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Areas</em></div>
+<div class="hs-rule"></div>
+<div class="tg">
+  <div class="tc"><h3>🔍 Intermediate Mass Black Hole Searches</h3><p>Searching for IMBH binaries (100–10,000 M☉) bridging stellar and supermassive black holes. We are active members of the IMBH/eBBH subgroup in the LSC.</p></div>
+  <div class="tc"><h3>🌀 Eccentric Binary Black Hole Searches</h3><p>Pipelines for compact binaries with significant orbital eccentricity — signatures of dynamical formation in globular clusters and galactic nuclei.</p></div>
+  <div class="tc"><h3>🧮 Matched Filter Techniques</h3><p>Designing optimal matched filter algorithms and template banks for detecting GW signals in detector noise across exotic binary parameter spaces.</p></div>
+  <div class="tc"><h3>🌊 Wavelet-Based Transient Searches</h3><p>Time-frequency wavelet methods for unmodeled GW burst detection, applicable to poorly-understood or unanticipated sources.</p></div>
+  <div class="tc"><h3>🤖 Machine Learning for GW Detection</h3><p>Deep learning for GW transient classification, glitch reduction, and pushing detection sensitivity beyond classical matched filtering.</p></div>
+  <div class="tc"><h3>⚖️ Tests of General Relativity</h3><p>Precision tests of GR in the strong-field dynamical regime using GW observations of compact binary mergers.</p></div>
+  <div class="tc"><h3>📡 Multi-messenger Astronomy</h3><p>Combining GW, electromagnetic, and neutrino observations for a complete picture of energetic astrophysical transients.</p></div>
+  <div class="tc"><h3>⚫ Astrophysics of Compact Binaries</h3><p>Extracting masses, spins, merger rates, and formation channels from the growing catalogue of GW events.</p></div>
+</div>
+
+
+
+<!-- Recent Publications from Group -->
+<div class="hs-title" style="font-size:1.5rem;font-weight:800;margin-bottom:6px;">Recent <em style="font-style:normal;background:var(--gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Publications from the group</em></div>
+<div class="hs-rule"></div>
+<p style="color:var(--muted);font-size:.85rem;margin-bottom:22px;">Full list: <a href="https://inspirehep.net/authors/994508" target="_blank">INSPIRE HEP</a> · <a href="https://scholar.google.com/citations?hl=en&user=2Dw4Y9AAAAAJ" target="_blank">Google Scholar</a></p>
+<div class="pub-list">
+
+  <!-- 2025 -->
+  <div class="pub"><div class="pub-yr">2025</div>
+  <h4>Improving the detection significance of gravitational wave transient searches with convolutional neural network models</h4>
+  <p>Johann Fernandes, Archana Pai, Koustav Chandra · Physical Review D 112, 083043</p>
+  <div class="pub-links">
+  <a class="pl" href="https://doi.org/10.1103/dpmn-c6lm" target="_blank">Paper</a>
+  </div></div>
+
+  <div class="pub"><div class="pub-yr">2025</div>
+  <h4>Leveraging cross-detector parameter consistency measures to enhance sensitivities of gravitational wave detectors</h4>
+  <p>Sayantan Ghosh, Leigh Smith, Jiyoon Sun, Archana Pai, Ik Siong Heng, V. Gayathri · Physical Review D 112, 063026</p>
+  <div class="pub-links">
+  <a class="pl" href="https://doi.org/10.1103/39mf-6qrx" target="_blank">Paper</a>
+  </div></div>
+
+  <div class="pub"><div class="pub-yr">2025</div>
+  <h4>Human resource development in astronomy: An Indian perspective</h4>
+  <p>J. S. Bagla, M. Datta, Archana Pai et al. · Journal of Astrophysics and Astronomy 46, 1–9</p>
+  <div class="pub-links">
+  <a class="pl" href="https://doi.org/10.1007/s12036-025-10041-3" target="_blank">Paper</a>
+  </div></div>
+
+
+  <!-- 2024 -->
+  <div class="pub"><div class="pub-yr">2024</div>
+  <h4>Enhancing search pipelines for short gravitational-wave transients with Gaussian mixture modelling</h4>
+  <p>Leigh Smith, Sayantan Ghosh, J. Sun, V. Gayathri, Ik Siong Heng, Archana Pai · Physical Review D 110, 083032</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.110.083032" target="_blank">Paper</a>
+  </div></div>
+
+  <div class="pub"><div class="pub-yr">2024</div>
+  <h4>Probing eccentric higher order modes through effective chirp mass model</h4>
+  <p>Ravikiran Hegde, Nirban Bose, Archana Pai · Physical Review D 110, 044026</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.110.044026" target="_blank">Paper</a>
+  </div></div>
+
+  <div class="pub"><div class="pub-yr">2024</div>
+  <h4>Impact of Bayesian priors on the inferred masses of quasi-circular intermediate-mass black hole binaries</h4>
+  <p>Koustav Chandra, Archana Pai, Samson H. W. Leong, Juan Calderón Bustillo · Physical Review D 109, 104031</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.104031" target="_blank">Paper</a>
+  </div></div>
+
+  <div class="pub"><div class="pub-yr">2024</div>
+  <h4>Unmasking noise transients masquerading as intermediate-mass black hole binaries</h4>
+  <p>Sayantan Ghosh, Koustav Chandra, Archana Pai · Physical Review D 109, 064015</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.109.064015" target="_blank">Paper</a>
+  </div></div>
+
+  <div class="pub"><div class="pub-yr">2024</div>
+  <h4>Science with the Daksha: High energy transients mission</h4>
+  <p>V. Bhalerao, D. Sawant, Archana Pai et al. · Experimental Astronomy 57, 23</p>
+  <div class="pub-links">
+  <a class="pl" href="https://doi.org/10.1007/s10686-024-09923-1" target="_blank">Paper</a>
+  </div></div>
+
+
+  <!-- 2023 -->
+  <div class="pub"><div class="pub-yr">2023</div>
+  <h4>Searching for massive black hole binaries with a transfer learning algorithm</h4>
+  <p>Kritti Sharma, Koustav Chandra, Archana Pai · Physical Review D 108, 124061</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.108.124061" target="_blank">Paper</a>
+  </div></div>
+
+
+  <!-- 2022 -->
+  <div class="pub"><div class="pub-yr">2022</div>
+  <h4>First gravitational-wave search for intermediate-mass black hole mergers with higher order harmonics</h4>
+  <p>Koustav Chandra, Juan Calderón Bustillo, Archana Pai, Ian Harry · Physical Review D 108, 123003</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.108.123003" target="_blank">Paper</a>
+  </div></div>
+
+  <div class="pub"><div class="pub-yr">2022</div>
+  <h4>Utilizing Gaussian mixture modelling in all-sky search for short-duration gravitational wave bursts</h4>
+  <p>Dixeena Lopez, V. Gayathri, Archana Pai, Ik Siong Heng, Chris Messenger, S. K. Gupta · Physical Review D 105, 063024</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.105.063024" target="_blank">Paper</a>
+  </div></div>
+
+
+  <!-- 2021 -->
+  <div class="pub"><div class="pub-yr">2021</div>
+  <h4>Effective chirp mass in the inspiral frequency evolution of non-spinning eccentric compact binaries</h4>
+  <p>Nirban Bose, Archana Pai · Physical Review D 104, 124021</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.104.124021" target="_blank">Paper</a>
+  </div></div>
+
+  <div class="pub"><div class="pub-yr">2021</div>
+  <h4>Science case of LIGO-India</h4>
+  <p>M. Saleem, Javed Rana, V. Gayathri, Aditya Vijaykumar, Srashti Goyal, Surabhi Sachdev, Jishnu Suresh, S. Sudhagar,
+   Arunava Mukherjee, Gurudatt Gaur, Bangalore Sathyaprakash, Archana Pai, Rana X Adhikari, P. Ajith, Sukanta Bose · Classical and Quantum Gravity 39 (2)</p>
+  <div class="pub-links">
+  <a class="pl" href="https://doi.org/10.48550/arXiv.2105.01716" target="_blank">Paper</a>
+  </div></div>
+
+  <div class="pub"><div class="pub-yr">2021</div>
+  <h4>Optimized PyCBC search for gravitational waves from intermediate-mass black hole mergers</h4>
+  <p>K. Chandra et al. · Physical Review D 104, 042004</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.104.042004" target="_blank">Paper</a>
+  </div></div>
+
+
+  <!-- 2020 -->
+  <div class="pub"><div class="pub-yr">2020</div>
+  <h4>Chirp mass based glitch identification in long-duration transients</h4>
+  <p>Nirban Bose, Archana Pai, Koustav Chandra, V. Gayathri · Physical Review D 102, 084034</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.102.084034" target="_blank">Paper</a>
+  </div></div>
+
+  <div class="pub"><div class="pub-yr">2020</div>
+  <h4>Numerical relativity injection analysis of spinning binary black-hole signals in Advanced LIGO data</h4>
+  <p>Koustav Chandra, V. Gayathri, Juan Calderón-Bustillo, Archana Pai · Physical Review D 102, 044035</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.102.044035" target="_blank">Paper</a>
+  </div></div>
+
+  <div class="pub"><div class="pub-yr">2020</div>
+  <h4>Enhancing the sensitivity of transient gravitational-wave searches with Gaussian mixture models</h4>
+  <p>V. Gayathri et al. · Physical Review D 102, 104023</p>
+  <div class="pub-links">
+  <a class="pl" href="https://journals.aps.org/prd/abstract/10.1103/PhysRevD.102.104023" target="_blank">Paper</a>
+  </div></div>
+
+</div>
+
+
+
+<!-- LIGO -->
+<div style="padding-top:80px;"></div>
+<div class="hs-title" style="font-size:1.5rem;font-weight:800;margin-bottom:6px;">Selected Publications <em style="font-style:normal;background:var(--gold);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">as a member of LIGO Scientific collaboration</em></div>
+<div class="hs-rule"></div>
+<div class="pub-list">
+
+  <div class="pub"><div class="pub-yr">2025</div>
+  <h4>GW231123: A binary black hole merger with total mass 190–265 M☉</h4>
+  <p>A. G. Abac, Archana Pai et al. · The Astrophysical Journal Letters 993, L25</p>
+  <div class="pub-links">
+  <a class="pl" href="https://doi.org/10.3847/2041-8213/ae0c9c" target="_blank">Paper</a>
+  </div></div>
+</div>
+</div>
+
+
+<footer><p>GW Physics Group · IIT Bombay · <a href="#" onclick="copyEmail(event)" style="text-decoration:none; cursor:pointer;"> archanap@iitb.ac.in </a></p></footer>
+  
+</div>
+
+
+
+
+<!-- ==================== GW PHYSICS PAGE ==================== -->
+
+
+</div>
+<div class="page" id="page-gw">
+
+  <div style="padding-top:20px;"></div>
+
+  <div class="res-body" style="padding-top:40px;">
+    
+    <div class="hs-label">Resources</div>
+    <div class="hs-title">
+      GW <em style="font-style:normal;background:var(--gold);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;">Physics</em>
+    </div>
+    <div class="hs-rule"></div>
+
+    <p style="color:var(--muted);max-width:900px;">
+      This page can contain detailed theoretical and data-analysis aspects of 
+      gravitational wave physics — waveform modelling, parameter estimation, 
+      detector physics, and numerical relativity.
+    </p>
+
+    <!-- Example content -->
+    <div class="tg" style="margin-top:30px;">
+      <div class="tc">
+        <h3>Waveform Modelling</h3>
+        <p>Post-Newtonian, EOB, and Numerical Relativity waveforms.</p>
+      </div>
+      <div class="tc">
+        <h3>Detector Physics</h3>
+        <p>LIGO/Virgo interferometry, noise sources, calibration.</p>
+      </div>
+      <div class="tc">
+        <h3>Data Analysis</h3>
+        <p>Matched filtering, Bayesian inference, ML pipelines.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>GW Physics Group · IIT Bombay</p>
+  </footer>
+
+</div>
+
+<script defer src="main.js"></script>
+
+</body>
+</html>
